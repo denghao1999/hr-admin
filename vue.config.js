@@ -38,7 +38,19 @@ module.exports = {
     },
     // 项目中有真正的接口服务器 不用模拟，所以去掉这一行
     // before: require('./mock/mock-server.js')
-
+    proxy: {
+      // 只要是axios发请求的时候，前面是以/abc开头的，就会被这块匹配到，就会自动帮我们做反向代理
+      // 所有的当前这个人资接口url都是以api开头的
+      '/abc': {
+        target: 'http://ihrm.itheima.net/', // 跨域请求的地址
+        changeOrigin: true,
+        pathRewrite: {
+          // 相当于输在做replace替换操作
+          // 为什么要写^，不写的话api接口url中间也有abc也会被替换成''
+          '^/abc': ''
+        }
+      }
+    }
   },
   configureWebpack: {
     // provide the app's title in webpack's name field, so that
