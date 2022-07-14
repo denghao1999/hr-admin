@@ -19,7 +19,11 @@ export function validUsername (str) {
   return valid_map.indexOf(str.trim()) >= 0
 }
 
-
+/**
+ *
+ * @param {校验手机号} mobile
+ * @returns
+ */
 export function validMobile (mobile) {
   var reg = /^(?:(?:\+|00)86)?1[3-9]\d{9}$/
   return reg.test(mobile)

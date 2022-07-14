@@ -117,6 +117,7 @@ export default {
       });
     },
     handleLogin() {
+      // 二次校验
       this.$refs.loginForm.validate((valid) => {
         if (valid) {
           this.loading = true;
